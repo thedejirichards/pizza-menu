@@ -1,5 +1,6 @@
 import "./index.css"
-
+import {pizzaData} from "../data"
+import type { pizzaType } from "./types"
 function App() {
   return (
     <div className="container">
@@ -10,17 +11,13 @@ function App() {
   )
 }
 
-
-
 function Header (){
   return <header className="header"><h1>Fast React Pizza Co.</h1></header>
 }
 function Menu (){
   return <main className="menu">
     <h2>Our Menu</h2>
-    <Pizza/>
-    <Pizza/>
-    <Pizza/>
+    {pizzaData.map(pizzaItem=> <Pizza key={pizzaItem.name} pizzaName={pizzaItem.name} PizzaIngredients={pizzaItem.ingredients}/>)}
   </main>
 }
 function Footer (){
@@ -31,17 +28,20 @@ function Footer (){
   // if(hour >= openHour && hour <= closeHour) alert("We are currently open") ;else alert("we are closed")
   console.log(isOpen)
   
-  return <footer>{new Date().toLocaleTimeString()}We are currently open</footer>
+  return <footer className="footer">{new Date().toLocaleTimeString()}We are currently open</footer>
 }
 
-function Pizza() {
+function Pizza({pizzaName, PizzaIngredients}: pizzaType ){
   return (
     <div>
-      <img src="/pizzas/spinaci.jpg" alt="spinaci" />
-      <h1>Pizza Spinachi</h1>
-      <p>Tomato, mozarella, spinatch, ricotta cheese</p>
+      <img src={`/pizzas/${pizzaName.split(" ")[1]?.toLowerCase() || pizzaName.toLowerCase()}.jpg`} alt="spinxaci" />
+      <h3>{pizzaName}</h3>
+      <p>{PizzaIngredients}</p>
     </div>
   )
 }
 
 export default App
+
+
+

@@ -1,4 +1,5 @@
-const pizzaData = [
+import type {PizzaDataType} from "./src/types"
+export const pizzaData: PizzaDataType = [
   {
     name: "Focaccia",
     ingredients: "Bread with italian olive oil and rosemary",
